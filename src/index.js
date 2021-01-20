@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import WebFont from 'webfontloader'
+import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import Contenedor from './elements/Contenedor'
 
 WebFont.load({
   google: {
@@ -11,7 +13,15 @@ WebFont.load({
 });
 
 const Index = () => {
-  return ( <App/> );
+  return ( 
+
+    <BrowserRouter>
+      <Contenedor>
+
+        <App/> 
+      </Contenedor>
+    </BrowserRouter>
+  );
 }
  
 
