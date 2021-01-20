@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import WebFont from 'webfontloader'
 import {BrowserRouter,Route,Switch} from 'react-router-dom'
+import {Helmet} from "react-helmet";
+
+import favicon from './images/logo.png'
 
 import './index.css';
 import Contenedor from './elements/Contenedor'
@@ -22,19 +25,24 @@ WebFont.load({
 const Index = () => {
   return ( 
 
-    <BrowserRouter>
-      <Contenedor>
-        <Switch>
-          <Route path="/login" component={Login}/>
-          <Route path="/register" component={Register}/>
-          <Route path="/categories" component={ExpensesByCategory}/>
-          <Route path="/list" component={ExpensesList}/>
-          <Route path="/edit/:id" component={EditExpense}/>
-          <Route path="/" component={App}/>
-          
-        </Switch>
-      </Contenedor>
-    </BrowserRouter>
+    <>
+      <Helmet>
+        <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
+      </Helmet>
+      <BrowserRouter>
+        <Contenedor>
+          <Switch>
+            <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/categories" component={ExpensesByCategory}/>
+            <Route path="/list" component={ExpensesList}/>
+            <Route path="/edit/:id" component={EditExpense}/>
+            <Route path="/" component={App}/>
+            
+          </Switch>
+        </Contenedor>
+      </BrowserRouter>
+    </>
   );
 }
  
