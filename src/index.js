@@ -8,6 +8,7 @@ import favicon from './images/logo.png'
 
 import './index.css';
 import Contenedor from './elements/Contenedor'
+import Background from './elements/Background'
 
 import App from './App';
 import Login from './components/Login'
@@ -42,6 +43,7 @@ const Index = () => {
           </Switch>
         </Contenedor>
       </BrowserRouter>
+      <Background/>
     </>
   );
 }
