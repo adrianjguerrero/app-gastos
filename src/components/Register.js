@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Helmet} from 'react-helmet'
 import {Header, Titulo,ContenedorHeader} from './../elements/Header'
 import Boton from './../elements/Boton'
@@ -15,6 +15,45 @@ const Svg = styled(SvgLogin)`
 
 `
 const Register = () => {
+    const [email,cambiarEmail] = useState('')
+    const [password,cambiarPassword] = useState('')
+    const [password2,cambiarPassword2] = useState('')
+
+    const handleChange = (e) => {
+
+        switch (e.target.name) {
+            case 'email':
+                cambiarEmail(e.target.value)
+                break;
+            case 'password':
+                cambiarPassword(e.target.value)
+                break
+            case 'password2':
+                cambiarPassword2(e.target.value)
+                break
+            default:
+                break;
+        }
+    }
+
+const handleSubmit = (e) =>{
+    e.preventDefault()
+    const REGEX_MAIL = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/
+    if( !REGEX_MAIL.test(email) ){
+        console.log('invalid mail')
+        return
+    }
+    if(!email || !password || !password2) {
+        console.log('complete fields')
+        return
+    }
+
+    if(password !== password2) {
+        console.log('password are not same');
+        return
+    }
+
+}
     return (
         <>
             <Helmet>
@@ -28,11 +67,11 @@ const Register = () => {
                     </div>
                 </ContenedorHeader>
             </Header>
-            <Formulario>
+            <Formulario onSubmit={handleSubmit}>
                 <Svg/>
-                <Input type="email" placeholder="Correo electronico"/>
-                <Input type="password" placeholder="Contraseña"/>
-                <Input type="password" placeholder="Repetir Contraseña"/>
+                <Input value={email} onChange={handleChange} type="email" name="email" placeholder="Correo electronico"/>
+                <Input value={password} onChange={handleChange} type="password" name="password" placeholder="Contraseña"/>
+                <Input value={password2} onChange={handleChange} type="password" name="password2" placeholder="Repetir Contraseña"/>
                 <ContenedorBoton>
                     {/* le ponemos el as porq esto es un link, ya con esto
                     no va a actuar como link */}
