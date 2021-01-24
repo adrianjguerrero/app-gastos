@@ -15,7 +15,7 @@ function App() {
           <ContenedorBotones>
             <Boton to="/categories">Categorias</Boton>
             <Boton to="/list">Lista de gastos</Boton>
-            <Boton>Logout</Boton>
+            <Boton to="/">Logout</Boton>
           </ContenedorBotones>
         </ContenedorHeader>
       </Header>
