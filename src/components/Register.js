@@ -1,8 +1,8 @@
 import React from 'react';
 import {Helmet} from 'react-helmet'
-import {Header, Titulo, ContenedorBotones, ContenedorHeader} from './../elements/Header'
+import {Header, Titulo,ContenedorHeader} from './../elements/Header'
 import Boton from './../elements/Boton'
-import {ContenedorBoton,ContenedorFiltros,Input,InputGrande,Formulario} from './../elements/FormElements'
+import {ContenedorBoton,Input,Formulario} from './../elements/FormElements'
 import {ReactComponent as SvgLogin} from './../images/registro.svg'
 import styled from 'styled-components'
 
