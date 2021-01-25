@@ -76,10 +76,10 @@ const Login = () => {
                     break;
                 case 'auth/user-not-found':
                     message = 'No existe una cuenta con este correo.'
-                break;
+                    break;
                 default:
                     message = 'Hubo un error al intentar crear la cuenta.'
-                break;
+                    break;
             }
             cambiarEstadoAlerta(true)
             cambiarAlerta({tipo:'error',mensaje:message})

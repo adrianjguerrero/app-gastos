@@ -10,6 +10,8 @@ import './index.css';
 import Contenedor from './elements/Contenedor'
 import Background from './elements/Background'
 
+import {AuthProvider} from './contexts/AuthContext'
+
 import App from './App';
 import Login from './components/Login'
 import Register from './components/Register'
@@ -30,19 +32,21 @@ const Index = () => {
       <Helmet>
         <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
       </Helmet>
-      <BrowserRouter>
-        <Contenedor>
-          <Switch>
-            <Route path="/login" component={Login}/>
-            <Route path="/register" component={Register}/>
-            <Route path="/categories" component={ExpensesByCategory}/>
-            <Route path="/list" component={ExpensesList}/>
-            <Route path="/edit/:id" component={EditExpense}/>
-            <Route path="/" component={App}/>
-            
-          </Switch>
-        </Contenedor>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Contenedor>
+            <Switch>
+              <Route path="/login" component={Login}/>
+              <Route path="/register" component={Register}/>
+              <Route path="/categories" component={ExpensesByCategory}/>
+              <Route path="/list" component={ExpensesList}/>
+              <Route path="/edit/:id" component={EditExpense}/>
+              <Route path="/" component={App}/>
+              
+            </Switch>
+          </Contenedor>
+        </BrowserRouter>
+      </AuthProvider>
       <Background/>
     </>
   );
