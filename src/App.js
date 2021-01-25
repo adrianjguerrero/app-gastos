@@ -2,6 +2,7 @@ import './App.css';
 import {Helmet} from 'react-helmet'
 import  {Header, Titulo, ContenedorBotones, ContenedorHeader} from './elements/Header'
 import Boton from './elements/Boton'
+import BtnLogout from './elements/BtnLogout'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <ContenedorBotones>
             <Boton to="/categories">Categorias</Boton>
             <Boton to="/list">Lista de gastos</Boton>
-            <Boton to="/">Logout</Boton>
+            <BtnLogout/>
           </ContenedorBotones>
         </ContenedorHeader>
       </Header>
