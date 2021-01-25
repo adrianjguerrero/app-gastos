@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import {Helmet} from 'react-helmet'
+import styled from 'styled-components'
+import {useHistory} from 'react-router-dom'
+
+import {auth} from './../firebase/firebaseConfig'
+
 import {Header, Titulo,ContenedorHeader} from './../elements/Header'
 import Boton from './../elements/Boton'
 import {ContenedorBoton,Input,Formulario} from './../elements/FormElements'
 import {ReactComponent as SvgLogin} from './../images/registro.svg'
-import styled from 'styled-components'
 
 const Svg = styled(SvgLogin)`
     width:100%;
@@ -15,6 +19,7 @@ const Svg = styled(SvgLogin)`
 
 `
 const Register = () => {
+    const history = useHistory()
     const [email,cambiarEmail] = useState('')
     const [password,cambiarPassword] = useState('')
     const [password2,cambiarPassword2] = useState('')
@@ -36,6 +41,7 @@ const Register = () => {
         }
     }
 
+
 const handleSubmit = (e) =>{
     e.preventDefault()
     const REGEX_MAIL = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/
@@ -52,6 +58,32 @@ const handleSubmit = (e) =>{
         console.log('password are not same');
         return
     }
+    
+        auth.createUserWithEmailAndPassword(email,password)
+        .then(()=>{
+
+            console.log('registrado')
+            history.push('/')
+
+        })
+        .catch((err)=>{
+            let message;
+            switch (err.code) {
+                case 'auth/invalid-password':
+                    message = 'La contraseña tiene que ser de al menos 6 caracteres.'
+                    break;
+                case 'auth/email-already-in-use':
+                    message = 'Ya existe una cuenta con el correo electrónico proporcionado.'
+                break;
+                case 'auth/invalid-email':
+                    message = 'El correo electrónico no es válido.'
+                break;
+                default:
+                    message = 'Hubo un error al intentar crear la cuenta.'
+                break;
+            }
+            console.log(message)
+        })
 
 }
     return (
