@@ -19,6 +19,8 @@ import ExpensesByCategory from './components/ExpensesByCategory'
 import ExpensesList from './components/ExpensesList'
 import EditExpense from './components/EditExpense'
 
+import PrivateRoute from './components/PrivateRoute'
+
 WebFont.load({
   google: {
     families: ['Work Sans:400,500,700', 'sans-serif']
@@ -38,10 +40,23 @@ const Index = () => {
             <Switch>
               <Route path="/login" component={Login}/>
               <Route path="/register" component={Register}/>
-              <Route path="/categories" component={ExpensesByCategory}/>
-              <Route path="/list" component={ExpensesList}/>
-              <Route path="/edit/:id" component={EditExpense}/>
-              <Route path="/" component={App}/>
+
+              <PrivateRoute path="/categories">
+                <ExpensesByCategory/>
+              </PrivateRoute>
+
+              <PrivateRoute path="/list">
+                <ExpensesList/>
+              </PrivateRoute>
+
+              <PrivateRoute path="/edit/:id">
+                <EditExpense/>
+              </PrivateRoute>
+
+              <PrivateRoute path="/">
+                <App/>
+              </PrivateRoute>
+
               
             </Switch>
           </Contenedor>
