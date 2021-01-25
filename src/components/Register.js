@@ -5,10 +5,11 @@ import {useHistory} from 'react-router-dom'
 
 import {auth} from './../firebase/firebaseConfig'
 
+import {ReactComponent as SvgLogin} from './../images/registro.svg'
 import {Header, Titulo,ContenedorHeader} from './../elements/Header'
 import Boton from './../elements/Boton'
 import {ContenedorBoton,Input,Formulario} from './../elements/FormElements'
-import {ReactComponent as SvgLogin} from './../images/registro.svg'
+import Alert from './../elements/Alert'
 
 const Svg = styled(SvgLogin)`
     width:100%;
@@ -23,6 +24,8 @@ const Register = () => {
     const [email,cambiarEmail] = useState('')
     const [password,cambiarPassword] = useState('')
     const [password2,cambiarPassword2] = useState('')
+    const [estadoAlerta,cambiarEstadoAlerta] = useState(false)
+    const [alerta,cambiarAlerta] = useState({})
 
     const handleChange = (e) => {
 
@@ -44,18 +47,23 @@ const Register = () => {
 
 const handleSubmit = (e) =>{
     e.preventDefault()
+    cambiarEstadoAlerta(false)
+    cambiarAlerta({})
     const REGEX_MAIL = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/
     if( !REGEX_MAIL.test(email) ){
-        console.log('invalid mail')
+        cambiarEstadoAlerta(true)
+        cambiarAlerta({tipo:'error',mensaje:'Ingresa un correo valido'})
         return
     }
     if(!email || !password || !password2) {
-        console.log('complete fields')
+        cambiarEstadoAlerta(true)
+        cambiarAlerta({tipo:'error',mensaje:'Completa los campos'})
         return
     }
 
     if(password !== password2) {
-        console.log('password are not same');
+        cambiarEstadoAlerta(true)
+        cambiarAlerta({tipo:'error',mensaje:'Las contraseñas no son iguales'})
         return
     }
     
@@ -82,7 +90,8 @@ const handleSubmit = (e) =>{
                     message = 'Hubo un error al intentar crear la cuenta.'
                 break;
             }
-            console.log(message)
+            cambiarEstadoAlerta(true)
+            cambiarAlerta({tipo:'error',mensaje:message})
         })
 
 }
@@ -110,6 +119,10 @@ const handleSubmit = (e) =>{
                     <Boton as="button" primario type="submit">Crear Cuenta</Boton>
                 </ContenedorBoton>
             </Formulario>
+            <Alert tipo={alerta.tipo} mensaje={alerta.mensaje} 
+                estadoAlerta={estadoAlerta} 
+                cambiarEstadoAlerta={cambiarEstadoAlerta}
+            />
         </>
     );
 }
