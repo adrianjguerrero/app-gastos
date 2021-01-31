@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import theme from './../theme'
 import {ReactComponent as IconoDown} from './../images/down.svg'
+import CategoryIcon from './../elements/CategoryIcon'
 
 
 const ContenedorSelect = styled.div`
@@ -94,7 +95,8 @@ const CategorySelect = ({categoria,cambiarCategoria}) => {
                     {categorias.map(categoria=>{
                         return <Opcion key={categoria.id} data-valor={categoria.id}
                             onClick={handleClick}>
-                            {categoria.texto}
+                                <CategoryIcon name={categoria.id}/>
+                                {categoria.texto}
                             </Opcion>
                     })}
 
