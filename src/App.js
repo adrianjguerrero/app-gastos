@@ -1,6 +1,8 @@
 import './App.css';
 import {Helmet} from 'react-helmet'
+
 import  {Header, Titulo, ContenedorBotones, ContenedorHeader} from './elements/Header'
+import ExpenseForm from './components/ExpenseForm'
 import Boton from './elements/Boton'
 import BtnLogout from './elements/BtnLogout'
 
@@ -20,6 +22,7 @@ function App() {
           </ContenedorBotones>
         </ContenedorHeader>
       </Header>
+      <ExpenseForm/>
   
     </>
   );
