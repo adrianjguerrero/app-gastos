@@ -5,12 +5,14 @@ import {ReactComponent as IconoPlus} from './../images/plus.svg'
 
 import Boton from './../elements/Boton'
 import CategorySelect from './CategorySelect'
+import DatePicker from './DatePicker'
 
 const ExpenseForm = () => {
 
     const [description,cambiarDescription] = useState('')
     const [valor,cambiarValor] = useState('')
     const [categoria,cambiarCategoria] = useState('hogar')
+    const [fecha,cambiarFecha] = useState(new Date())
 
     const handleChange = (e) => {
         if(e.target.name === 'description') {
@@ -24,7 +26,7 @@ const ExpenseForm = () => {
             <Formulario>
                 <ContenedorFiltros>
                     <CategorySelect categoria={categoria} cambiarCategoria={cambiarCategoria}/>
-                    <p>date picker</p>
+                    <DatePicker fecha={fecha} cambiarFecha={cambiarFecha}/>
                 </ContenedorFiltros>
                 <div>
                     <Input type="text" name="description" id="description"
